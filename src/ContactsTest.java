@@ -1,5 +1,6 @@
 //package util;
-
+import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,23 +14,27 @@ import util.Input;
 
 public class ContactsTest {
     static Input input = new Input();
+/*
+    static String namessFromFile ()  {
 
-    static String namessFromFile () {
-        String directory = "data";
+        //String directory = "data";
 
-        Path file = Paths.get(directory, "contacts.txt");
+        //Path file = Paths.get(directory, "contacts.txt");
 
         try {
             List<String> namesFromFile = Files.readAllLines(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ;
+        return "String" ;
     }
-
+*/
     public static void main(String[] args) {
+
+
         boolean keepGoing;
         Scanner scan = new Scanner(System.in);
+        List<String> updatedList = new ArrayList<>();
 
         String directory = "data";
 
@@ -69,7 +74,8 @@ public class ContactsTest {
                     try {
                         System.out.println("Name " + " | " + " Phone number");
                         System.out.println("----------------------------");
-                        for (String line : namessFromFile) {
+                        List<String> namesFromFile = Files.readAllLines(file);
+                        for (String line : namesFromFile) {
                             String name = line.split(" ")[0];
                             int number = Integer.parseInt(line.split(" ")[1]);
                             System.out.println(name + " | " + number);
@@ -80,17 +86,58 @@ public class ContactsTest {
                     }
                     break;
                 case 2:
-//                    System.out.println("Add a name: ");
-//                    String inputName = scan.nextLine();
-//                    System.out.println("Add a number: ");
-//                    int inputNumber = scan.nextInt();
-//                    Files.write(
-//                            Paths.get("data", "contacts.txt"),
-//                            updatedList.add(inputName + inputNumber),
-//                            StandardOpenOption.APPEND
-//                    );
+                    try {
+                        System.out.println("Add a name: ");
+                        String inputName = scan.nextLine();
+                        System.out.println("Add a number: ");
+                        int inputNumber = scan.nextInt();
+                        String contactInfo = inputName + " " + inputNumber;
+//                        List<String> namesFromFile = Files.readAllLines(file);
+                        Files.write(
+                            Paths.get("data", "contacts.txt"),
+                            Arrays.asList(contactInfo),
+                            StandardOpenOption.APPEND
+                    );
+                        System.out.println("contact has been added");
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
                     break;
                 case 3:
+
+                    System.out.println("Give me a name");
+                    String line = scan.nextLine();
+                   // String line;
+
+                    try{
+                        List<String> namesFromFile = Files.readAllLines(file);
+                       // for (String line : namesFromFile)
+                         {
+                            String name = line.split(" ")[0];
+                            int number = Integer.parseInt(line.split(" ")[1]);
+//                            System.out.println(name + " | " + number);
+
+                            if (line.equals(name)) {
+                                System.out.println("is this name taken?");
+                            } else {
+                                System.out.println("Oh? is this a new person?");
+                            }
+                        }
+                     /*
+                        FileReader fileReader = new FileReader("contact.txt");
+                        BufferedReader bufferedReader = new BufferedReader(fileReader);
+                        while((line = bufferedReader.readLine())!= null) {
+                            updatedList.add(line);
+                            System.out.println(line);
+                        }
+                        bufferedReader.close();
+                       // for (int i = 0; i < updatedList.size; i++){
+                        //    print(updatedList.get(i));
+                        //}
+                      */
+                    } catch (Exception e) {
+
+                    }
 //                    System.out.println("Give me a name");
 //                    String giveName = scan.nextLine();
 //                    if (giveName.equalsIgnoreCase()) {
@@ -98,9 +145,15 @@ public class ContactsTest {
 //                    }
                     break;
                 case 4:
-//                    System.out.println("Delete contact: Enter name");
-//                    String deleteName = scan.nextLine();
-//                    List<String> namesFromFile = Files.readAllLines(file);
+                    System.out.println("Delete contact: Enter name");
+                    String deleteName = scan.nextLine();
+                    try {
+                        List<String> namesFromFile = Files.readAllLines(file);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
 //                    for (String line : namesFromFile) {
 //                        if(line.equals(deleteName)) {
 //                            updatedList.remove(deleteName);
@@ -114,4 +167,7 @@ public class ContactsTest {
             keepGoing = input.yesNo();
         } while (keepGoing);
     }
+
+
+
 }
