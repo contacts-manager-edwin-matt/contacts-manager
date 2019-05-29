@@ -90,7 +90,6 @@ public class ContactsTest {
                     }
                     break;
                 case 3:
-
                     System.out.println("Give me a name");
                     String line = scan.nextLine();
                    // String line;
@@ -98,8 +97,7 @@ public class ContactsTest {
                     try{
                         List<String> namesFromFile = Files.readAllLines(file);
                        // for (String line : namesFromFile)
-                         {
-                            String name = line.split(" ")[0];
+                        String name = line.split(" ")[0];
                             int number = Integer.parseInt(line.split(" ")[1]);
 //                            System.out.println(name + " | " + number);
 
@@ -108,28 +106,15 @@ public class ContactsTest {
                             } else {
                                 System.out.println("Oh? is this a new person?");
                             }
-                        }
-                     /*
-                        FileReader fileReader = new FileReader("contact.txt");
-                        BufferedReader bufferedReader = new BufferedReader(fileReader);
-                        while((line = bufferedReader.readLine())!= null) {
-                            updatedList.add(line);
-                            System.out.println(line);
-                        }
-                        bufferedReader.close();
-                       // for (int i = 0; i < updatedList.size; i++){
-                        //    print(updatedList.get(i));
-                        //}
-                      */
+
                     } catch (Exception e) {
 
-                    }
+                    }  break;
 //                    System.out.println("Give me a name");
 //                    String giveName = scan.nextLine();
 //                    if (giveName.equalsIgnoreCase()) {
 //                        System.out.println(giveName);
 //                    }
-                    break;
                 case 4:
                     System.out.println("Delete contact: Enter name");
                     String deleteName = scan.nextLine();
