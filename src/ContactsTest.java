@@ -15,9 +15,8 @@ public class ContactsTest {
     static Input input = new Input();
 
     static String namessFromFile () {
-        String directory = "data";
 
-        Path file = Paths.get(directory, "contacts.txt");
+        Path file = Paths.get("data", "contacts.txt");
 
         try {
             List<String> namesFromFile = Files.readAllLines(file);
